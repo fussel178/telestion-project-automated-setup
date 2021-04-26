@@ -16,7 +16,7 @@ jobs:
     name: Initialize the project
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout 📥
+      - name: Checkout
         uses: actions/checkout@v2.3.4
 
       - name: Setup environment
@@ -63,7 +63,7 @@ jobs:
           FILE: "${{ github.workspace }}/application/build.gradle"
 
       - name: Initialization finished. Locking action...
-        run: touch "$LOCK_FILE"
+        run: echo "This project was initialized with Github Actions" > "$LOCK_FILE"
         env:
           LOCK_FILE: ${{ env.lock_file }}
 
