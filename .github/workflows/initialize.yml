@@ -5,7 +5,10 @@ on:
   workflow_dispatch:
     inputs:
       group:
-        description: "Maven Group Name"
+        description: "Gradle Group Name"
+        required: true
+      main:
+        description: "Gradle Main Class"
         required: true
 
 jobs:
@@ -43,12 +46,20 @@ jobs:
           REPLACE_WITH: ${{ env.repo_name }}
           FILE: "${{ github.workspace }}/application/Dockerfile"
 
-      - name: Update build.gradle
+      - name: Update build.gradle group variable
         run: |
           sed -i "s/${PLACEHOLDER}/${REPLACE_WITH}/g" "$FILE"
         env:
           PLACEHOLDER: "##GROUP_ID##"
           REPLACE_WITH: ${{ github.event.inputs.group }}
+          FILE: "${{ github.workspace }}/application/build.gradle"
+
+      - name: Update build.gradle mainClass variable
+        run: |
+          sed -i "s/${PLACEHOLDER}/${REPLACE_WITH}/g" "$FILE"
+        env:
+          PLACEHOLDER: "##MAIN_CLASS##"
+          REPLACE_WITH: ${{ github.event.inputs.main }}
           FILE: "${{ github.workspace }}/application/build.gradle"
 
       - name: Initialization finished. Locking action...

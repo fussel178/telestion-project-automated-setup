@@ -11,7 +11,7 @@ sourceCompatibility = gradle.sourceCompatibility
 targetCompatibility = gradle.targetCompatibility
 
 application {
-    mainClassName = 'de.wuespace.telestion.Main'
+    mainClassName = '##MAIN_CLASS##'
 }
 
 
