@@ -56,3 +56,10 @@ jobs:
         env:
           LOCK_FILE: ${{ env.lock_file }}
 
+      - name: Pushing changes to remote
+        run: |
+          git config --local user.name "${GITHUB_ACTOR}"
+          git config --local user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          git add .
+          git commit -m "feat: Initialized project"
+          git push
