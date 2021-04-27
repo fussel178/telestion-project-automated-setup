@@ -53,12 +53,12 @@ jobs:
 
       - name: Generate folder structure
         run: |
-          FOLDERS="$(echo "$GROUP" | sed -e 's/./\//g')"
+          FOLDERS="$(echo "$GROUP" | sed -e 's/\./\//g')"
           mkdir -p "${GITHUB_WORKSPACE}/${JAVA_MAIN_SRC}/${FOLDERS}"
           touch "${GITHUB_WORKSPACE}/${JAVA_MAIN_SRC}/${FOLDERS}/.gitkeep"
         env:
           GROUP: ${{ github.event.inputs.group }}
-          JAVA_MAIN_SRC: "src/main/java"
+          JAVA_MAIN_SRC: "application/src/main/java"
 
       - name: Initialization finished. Locking action...
         run: echo "This project was initialized with Github Actions" > "$LOCK_FILE"
