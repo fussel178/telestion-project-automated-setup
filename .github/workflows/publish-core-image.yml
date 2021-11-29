@@ -27,7 +27,7 @@ jobs:
         uses: docker/setup-buildx-action@v1.6.0
 
       - name: Restore cache release upload URL ♻️
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: ~/.build-env
           key: 'github-release-action'
@@ -36,7 +36,7 @@ jobs:
         run: cat ~/.build-env >> $GITHUB_ENV
 
       - name: Restore gradle cache ♻️
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: |
             ~/.gradle/caches
@@ -45,7 +45,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Cache Docker layers ♻️
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
